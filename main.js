@@ -4,9 +4,10 @@ block_image_height=30;
 player_x=10;
 player_y = 10;
 var player_object="";
+var block_image_object="";
 function player_update()
 {
-    fabric.Image.fromURL("player.png",function(img)
+    fabric.Image.fromURL("player.png",function(Img)
 {
     player_object=Img;
 player_object.scaleToWidth(150);
@@ -15,7 +16,7 @@ player_object.set({
 top:player_y,
 left:player_x
 });
-canvas.add(olayer_object);
+canvas.add(player_object);
 
 }  
 );
@@ -38,7 +39,7 @@ function new_image(get_image)
 window.addEventListener("keydown",my_keydown);
 function my_keydown(e)
 {
-keyPressed=e.keycode;
+keyPressed=e.keyCode;
 console.log(keyPressed);
 if(e.shiftKey==true && keyPressed == '80')
 {
@@ -121,4 +122,48 @@ if(keyPressed== '67')
     new_image('cloud.jpg');
     console.log("c");
 }
+}
+function up()
+{
+    if (player_y>=0)
+    {
+        player_y = player_y - block_image_height;
+        console.log("block image height="+ block_image_height);
+        console.log("when Up arrow Key is pressed,X ="+ player_x +", Y="+player_y)
+        canvas.remove(player_object)
+        player_update();
+    }
+}
+function down()
+{
+    if (player_y<=500)
+    {
+        player_y = player_y + block_image_height;
+        console.log("block image height="+ block_image_height);
+        console.log("when down arrow Key is pressed,X ="+ player_x +", Y="+player_y)
+        canvas.remove(player_object)
+        player_update();
+    }
+}
+function left()
+{
+    if (player_x>=0)
+    {
+        player_x = player_x - block_image_width;
+        console.log("block image width="+ block_image_width);
+        console.log("when left arrow Key is pressed,X ="+ player_x +", Y="+player_y)
+        canvas.remove(player_object)
+        player_update();
+    }
+}
+function right()
+{
+    if (player_x<=850)
+    {
+        player_x = player_x + block_image_width;
+        console.log("block image width="+ block_image_width);
+        console.log("when right arrow Key is pressed,X ="+ player_x +", Y="+player_y)
+        canvas.remove(player_object)
+        player_update();
+    }
 }
